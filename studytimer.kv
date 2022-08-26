@@ -1,25 +1,37 @@
 #:kivy 2.1.0
 BoxLayout:
     orientation: 'vertical'
+    
 
     Label:
         text: "[color=00ff33][b]00:00[/b]:00[/color]"
         font_size: 60
         markup: True
-        background_color: '#282828'
+        
 
     BoxLayout:
         orientation: 'horizontal'
+        padding: 20
+        spacing: 20
+        height: 90
+        size_hint: (1, None)
+
+
 
         Button:
             text: "Start"
             font_size: 25
             bold: True
+            border: (2,2,2,2)
+            background_color: (0,1,0,1) if self.state == "normal" else (0,124,0,1)
+            
         
         Button:
             text: "Stop"
             font_size: 25
             bold: True
+            border: (2,2,2,2)
+            background_color: (1,0,0,1) if self.state == "normal" else (148,0,0,1)
         
         Button:
             text: "Reset"
