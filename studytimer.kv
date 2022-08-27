@@ -1,5 +1,4 @@
 #:kivy 2.1.0
-
 <Label>:
     font_size: 60
     markup: True
@@ -7,16 +6,17 @@
 <Button>:
     font_size: 25
     bold: True
+    color: '#ffffff'
+
+
 BoxLayout:
     orientation: 'vertical'
-    
 
     Label:
-        id: time
-        text: "[color=00ff33][b]00:00[/b]:00[/color]"
+        id: counter
+        text: '25:00'
         font_size: 60
-        markup: True
-        
+
 
     BoxLayout:
         orientation: 'horizontal'
@@ -25,33 +25,25 @@ BoxLayout:
         height: 90
         size_hint: (1, None)
 
-
-
         Button:
+            text: 'Start'
             id: start_button
-            text: "Start"
-            font_size: 25
-            bold: True
-            border: (2,2,2,2)
             background_color: (0,1,0,1) if self.state == "normal" else (0,124,0,1)
-            
-        
-        Button:
-            id: stop_button
-            text: "Stop"
-            font_size: 25
-            bold: True
             border: (2,2,2,2)
-            background_color: (1,0,0,1) if self.state == "normal" else (148,0,0,1)
+            on_press: app.toggle_state()
         
+
         Button:
             id: reset_button
             text: "Reset"
             font_size: 25
             bold: True
             border: (2,2,2,2)
+            background_color: (1,0,0,1) if self.state == "normal" else (148,0,0,1)
+            on_press: app.reset()
 
     Label:
-        id: counter
-        text: '00:00'
-        font_size: 60
+        id: time
+        text: '[b]00[/b]:00'
+        font_size: 30
+        color: '#00ff33'

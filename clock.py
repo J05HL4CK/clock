@@ -2,16 +2,12 @@ from kivy.app import App
 from time import strftime
 from kivy.clock import Clock
 from kivy.config import Config
+from kivy.core.audio import SoundLoader
 
 Config.set('graphics', 'width', '500')
 Config.set('graphics', 'height', '300')
 Config.set('graphics', 'resizable', '0')
 Config.write()
-
-# countdown timer
-# take a time when the start button is pressed T1
-# take the time when the stop button is pressed T2
-# take the difference between the start and stop
 
 class StudyClock(App):
 
@@ -30,15 +26,19 @@ class StudyClock(App):
 
 
     def toggle_state(self):
-        """Toggle the state of timer on/off"""
+        """Toggle the state of timer/btn on/off"""
+        if self.timer_on:
+            self.root.ids.start_button.text =  "Start"
+        else:
+            self.root.ids.start_button.text = "Stop"
         self.timer_on =  not self.timer_on
 
 
     def reset(self):
-        """Time off and period reset to default"""
+        """Timer off and period reset to default"""
         self.timer_on = False
         self.focus_period = self.default_period
-
+        self.root.ids.counter.text = strftime('25:00')
 
 
     def update_time(self,delta):
@@ -52,10 +52,18 @@ class StudyClock(App):
 
 
 
-
     def on_start(self):
         Clock.schedule_interval(self.update_time, 0)
 
+
+
+
+
+if __name__ == '__main__':
+    from kivy.core.window import Window
+    from kivy.utils import get_color_from_hex    
+    Window.clearcolor = get_color_from_hex('#010101')    
+    StudyClock().run()
 
 
 
