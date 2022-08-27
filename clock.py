@@ -51,11 +51,8 @@ class StudyClock(App):
             self.timer_On = False
 
 
-
     def on_start(self):
         Clock.schedule_interval(self.update_time, 0)
-
-
 
 
 
@@ -65,16 +62,3 @@ if __name__ == '__main__':
     Window.clearcolor = get_color_from_hex('#010101')    
     StudyClock().run()
 
-
-
-
-
-
-
-if __name__ == '__main__':
-    from kivy.core.window import Window
-    from kivy.utils import get_color_from_hex
-    
-    Window.clearcolor = get_color_from_hex('#010101')
-    
-    StudyClock().run()
